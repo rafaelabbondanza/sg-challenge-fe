@@ -1,0 +1,78 @@
+<section>
+    <ul class="par-error-list" ng-show="$ctrl.errors.length">
+        <li ng-repeat="_error_ in $ctrl.errors" class="par-error">{{_error_.message}}</li>
+    </ul>
+    <div class="row ml-row">
+        <div class="col-md-4">
+            <ml-people-search
+                ml-async-search="$ctrl.peopleSearch(_term_)"
+                ml-onselect="$ctrl.onSpUserSelect(_person_)"
+                ml-display="$ctrl.getSpUser()">
+            </ml-people-search>
+        </div>
+    </div>
+    <div class="row ml-row" ng-repeat="_org_ in $ctrl.organizations">
+        <div class="col-md-3">
+            <div class="ml-label">LOB</div>
+            <input type="text" class="ml-input form-control" ng-model="_org_.Lob.display" ng-disabled="true">
+        </div>
+        <div class="col-md-5">
+            <div class="ml-label">Sub-LOB</div>
+            <input type="text" class="ml-input form-control" ng-model="_org_.SubLob.display" ng-disabled="true">
+        </div>
+        <div class="col-md-4">
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label" ng-class="{'invisible': !$first}">Benefit</span>
+                <input type="checkbox" ng-model="_org_.IsApproverBenefit" ng-change="$ctrl.updateApprover(_org_, 'IsApproverBenefit')">
+            </label>
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label" ng-class="{'invisible': !$first}">Cost</span>
+                <input type="checkbox" ng-model="_org_.IsApproverCost" ng-change="$ctrl.updateApprover(_org_, 'IsApproverCost')">
+            </label>
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label" ng-class="{'invisible': !$first}">Finance</span>
+                <input type="checkbox" ng-model="_org_.IsCfo" ng-change="$ctrl.updateApprover(_org_, 'IsCfo')">
+            </label>
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label" ng-class="{'invisible': !$first}">Sponsor</span>
+                <input type="checkbox" ng-model="_org_.IsSponsor" ng-change="$ctrl.updateApprover(_org_, 'IsSponsor')">
+            </label>
+            <button type="button" class="btn btn-link btn-lg risk-delete" ng-click="$ctrl.removeApprover(_org_)">
+                <span class="fa fa-trash" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+    <hr ng-show="$ctrl.spUser">
+    <div class="ml-par-txt-subcaption par-admin-add" ng-show="$ctrl.spUser">Add Approver</div>
+    <div class="row ml-row" ng-show="$ctrl.spUser">
+        <div class="col-md-3">
+            <div class="ml-label">LOB</div>
+            <new-dropdown ml-list="$ctrl.LOBList" ml-model="$ctrl.newLob" ml-on-select="$ctrl.onLobSelect(_dropdownItem_)"></new-dropdown>
+        </div>
+        <div class="col-md-5">
+            <div class="ml-label">Sub-LOB</div>
+            <new-dropdown ml-list="$ctrl.newLob.sub" ml-model="$ctrl.newSubLob" ml-on-select="$ctrl.onSubLobSelect(_dropdownItem_)"></new-dropdown>
+        </div>
+        <div class="col-md-4">
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label">Benefit</span>
+                <input type="checkbox" ng-model="$ctrl.newApprover.IsApproverBenefit">
+            </label>
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label">Cost</span>
+                <input type="checkbox" ng-model="$ctrl.newApprover.IsApproverCost">
+            </label>
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label">Finance</span>
+                <input type="checkbox" ng-model="$ctrl.newApprover.IsCfo">
+            </label>
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label">Sponsor</span>
+                <input type="checkbox" ng-model="$ctrl.newApprover.IsSponsor">
+            </label>
+            <button type="button" class="btn btn-link btn-lg risk-delete" ng-click="$ctrl.addOrganization()">
+                <span class="fa fa-save" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</section>

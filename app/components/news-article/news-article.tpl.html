@@ -1,0 +1,8 @@
+<div class="hn-news-article">
+    <div class="hn-news-article-title">
+        {{ $ctrl.article.Title }} <a ng-href="{{ $ctrl.article.Url }}" target="_blank" class="hn-small-txt hn-light">({{ $ctrl.article.Url }})</a>
+    </div>
+    <div class="hn-news-article-info hn-tiny-txt hn-light">
+        {{ $ctrl.article.Pixel.Views || 0 }} "points" by {{ $ctrl.article.User.Username }}
+    </div>
+</div>

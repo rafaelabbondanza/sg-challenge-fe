@@ -1,0 +1,29 @@
+<div class="hn-admin">
+    <h3>New Article</h3>
+    <div>
+        <label>Title</label>
+        <input type="text" name="title" ng-model="$ctrl.newArticle.Title">
+    </div>
+
+    <div>
+        <label>Url</label>
+        <input type="text" name="url" ng-model="$ctrl.newArticle.Url">
+    </div>
+
+    <button ng-click="$ctrl.generatePixel()" ng-disabled="$ctrl.isDisabled()">Generate Pixel</button>
+
+    <div class="hn-admin-pixel" ng-show="$ctrl.pixel">
+        <h4>New Pixel:</h4>
+        <div> {{ $ctrl.pixel.title }} ({{ $ctrl.pixel.url }})</div>
+        <pre> {{ $ctrl.pixel.tag }} </pre>
+    </div>
+    <div class="hn-admin-pixel" ng-show="$ctrl.pixels.length">
+        <hr>
+        <h4>Existing Pixels:</h4>
+        <div ng-repeat="_pixel_ in $ctrl.pixels">
+            <div> {{ _pixel_.title }} ({{ _pixel_.url }})</div>
+            <pre> {{ _pixel_.tag }} </pre>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,36 @@
+{
+  "name": "proj-boilerplate",
+  "version": "0.0.0",
+  "authors": "",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.6.4",
+    "angular-ui-router": "^1.0.5",
+    "bootstrap-css-only": "^3.3.7"
+  },
+  "resolutions": {
+    "angular": "^1.6.4"
+  },
+  "overrides": {
+    "angular": {
+      "main": {
+        "development": "./angular.js",
+        "production": "./angular.min.js"
+      }
+    },
+    "angular-ui-router": {
+      "main": {
+        "development": "./release/angular-ui-router.js",
+        "production": "./release/angular-ui-router.min.js"
+      }
+    },
+    "bootstrap-css-only": {
+      "main": {
+        "development": [
+          "css/bootstrap.css"
+        ],
+        "production": "css/bootstrap.min.css"
+      }
+    }
+  }
+}

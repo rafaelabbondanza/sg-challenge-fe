@@ -1,0 +1,89 @@
+<section>
+    <ul class="par-error-list" ng-show="$ctrl.errors.length">
+        <li ng-repeat="_error_ in $ctrl.errors" class="par-error">{{_error_.message}}</li>
+    </ul>
+    <div class="row ml-row">
+        <div class="col-md-3">
+            <div class="ml-label">LOB</div>
+            <new-dropdown
+                ml-hide-empty-option
+                ml-list="$ctrl.LOBList"
+                ml-model="$ctrl.LOB"
+                ml-on-select="$ctrl.onSelectLob(_dropdownItem_)"
+            ></new-dropdown>
+        </div>
+        <div class="col-md-4">
+            <div class="ml-label">Sub-LOB</div>
+            <new-dropdown
+                ml-list="$ctrl.LOB.sub"
+                ml-model="$ctrl.SubLOB"
+                ml-on-select="$ctrl.onSelectSubLob(_dropdownItem_)"
+            ></new-dropdown>
+        </div>
+        <!-- <div class="col-md-1">
+            <button type="button" class="btn ml-btn-primary ml-btn-admin" ng-click="$ctrl.getApproversByLob($ctrl.LOB.id, $ctrl.SubLOB.id)">GO</button>
+        </div> -->
+    </div>
+    <div class="row ml-row" ng-repeat="_approver_ in $ctrl.approvers">
+        <div class="col-md-4">
+            <div class="ml-par-txt-sub-caption">
+                <p class="ml-bold">{{ _approver_.UserApprover.FirstName + ' ' + _approver_.UserApprover.LastName }}</p>
+                <p>{{ _approver_.UserApprover.Title }}</p>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label" ng-class='{"invisible": !$first}'>Benefit</span>
+                <input type="checkbox" ng-model="_approver_.IsApproverBenefit" ng-change="$ctrl.updateApprover(_approver_, 'IsApproverBenefit')">
+            </label>
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label" ng-class='{"invisible": !$first}'>Cost</span>
+                <input type="checkbox" ng-model="_approver_.IsApproverCost" ng-change="$ctrl.updateApprover(_approver_, 'IsApproverCost')">
+            </label>
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label" ng-class='{"invisible": !$first}'>Finance</span>
+                <input type="checkbox" ng-model="_approver_.IsCfo" ng-change="$ctrl.updateApprover(_approver_, 'IsCfo')">
+            </label>
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label" ng-class='{"invisible": !$first}'>Sponsor</span>
+                <input type="checkbox" ng-model="_approver_.IsSponsor" ng-change="$ctrl.updateApprover(_approver_, 'IsSponsor')">
+            </label>
+            <button type="button" class="btn btn-link btn-lg risk-delete" ng-click="$ctrl.removeApprover(_approver_)">
+                <span class="fa fa-trash" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+    <hr ng-show="$ctrl.LOB">
+    <div class="ml-par-txt-subcaption par-admin-add" ng-show="$ctrl.LOB">Add Approver</div>
+    <div class="row ml-row" ng-show="$ctrl.LOB">
+        <div class="col-md-4">
+            <ml-people-search
+                ml-async-search="$ctrl.peopleSearch(_term_)"
+                ml-onselect="$ctrl.onUserSelect(_person_)"
+                ml-display="$ctrl.getSpUser()">
+            </ml-people-search>
+        </div>
+        <div class="col-md-5">
+
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label">Benefit</span>
+                <input type="checkbox" ng-model="$ctrl.newApprover.IsApproverBenefit">
+            </label>
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label" >Cost</span>
+                <input type="checkbox" ng-model="$ctrl.newApprover.IsApproverCost">
+            </label>
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label" >Finance</span>
+                <input type="checkbox" ng-model="$ctrl.newApprover.IsCfo">
+            </label>
+            <label class="ml-admin-checkbox">
+                <span class="ml-admin-checkbox-label">Sponsor</span>
+                <input type="checkbox" ng-model="$ctrl.newApprover.IsSponsor">
+            </label>
+            <button type="button" class="btn btn-link btn-lg risk-delete" ng-click="$ctrl.addApprover()">
+                <span class="fa fa-save" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</section>

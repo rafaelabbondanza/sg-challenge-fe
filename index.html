@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HN - Clone</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <!-- bower:css -->
+    <!-- endinject -->
+    <!-- inject:css -->
+    <!-- endinject -->
+</head>
+<body ng-app="app">
+    <section class="hn-app-root" ng-include src="'app/base.tpl.html'"></section>
+<!-- bower:js -->
+<!-- endinject -->
+<!-- inject:js -->
+<!-- endinject -->
+<script>
+    angular.bootstrap(document, angular.module('app'));
+</script>
+</body>
+</html>

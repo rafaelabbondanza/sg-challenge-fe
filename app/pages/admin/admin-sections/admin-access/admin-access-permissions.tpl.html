@@ -1,0 +1,47 @@
+<section>
+    <ul class="par-error-list" ng-show="$ctrl.errors.length">
+        <li ng-repeat="_error_ in $ctrl.errors" class="par-error">{{_error_.message}}</li>
+    </ul>
+    <div class="row ml-row">
+        <div class="col-md-3">
+            <input type="text" class="ml-input form-control" placeholder="Search" ng-model="$ctrl.filter"/>
+        </div>
+    </div>
+    <hr>
+    <div class="row ml-row" ng-repeat="_permission_ in $ctrl.userPermissions() | orderBy:'User.LastName' | filter:$ctrl.filter">
+        <div class="ml-col col-md-3">
+            <label class="ml-label">Name</label>
+            <input ng-disabled="true" class="ml-input form-control" value="{{_permission_.User.FirstName + ' ' + _permission_.User.LastName}}" />
+        </div>
+        <div class="col-md-3">
+            <label class="ml-label">LOB</label>
+            <ml-dropdown ml-disabled="true" ml-list="$ctrl.LOBList" ml-model="_permission_.Lob"></ml-dropdown>
+        </div>
+        <button type="button" class="btn btn-link btn-lg admin-access-delete" ng-click="$ctrl.removePermission(_permission_.UserId, _permission_.Id)">
+            <span class="fa fa-trash" aria-hidden="true"></span>
+        </button>
+    </div>
+    <hr>
+    <div class="row ml-row">
+        <div class="ml-par-txt-subcaption par-admin-add">Add User</div>
+    </div>
+    <div class="row ml-row">
+        <div class="ml-col col-md-3">
+            <ml-people-search
+                ml-async-search="$ctrl.peopleSearch(_term_)"
+                ml-onselect="$ctrl.onSpUserSelect(_person_)"
+                ml-display="$ctrl.getSpUser()">
+            </ml-people-search>
+        </div>
+        <div class="ml-col col-md-3">
+            <ml-dropdown
+                ml-list="$ctrl.LOBList"
+                ml-model="$ctrl.LOB"
+                ml-default-text="'--'"
+            ></ml-dropdown>
+        </div>
+        <button type="button" class="btn btn-link btn-lg risk-delete" ng-click="$ctrl.addPermission()">
+            <span class="fa fa-save" aria-hidden="true"></span>
+        </button>
+    </div>
+</section>
