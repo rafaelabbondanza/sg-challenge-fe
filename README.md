@@ -1,5 +1,5 @@
 Installation:
-  - Make sure node (v8.1.*), npm (v5.*), gulp (v3.9.*), and bower (v1.8.*) are installed globally on your machine
+  - Make sure node (v8.1.\*), npm (v5.\*), gulp (v3.9.\*), and bower (v1.8.\*) are installed globally on your machine
   - run 'npm install' from this directory
   - run 'bower install' from this directory
 
